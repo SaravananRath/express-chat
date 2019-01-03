@@ -13,7 +13,12 @@ io.on('connection', client => {
   console.log('Client Connected...')
 
   client.on('join', data => {
-    console.log(data)
+    console.log(` This is the ${data}`)
+  })
+
+  client.on('messages', data => {
+    client.emit('thread', data)
+    client.broadcast.emit('thread', data)
   })
 })
 server.listen(8000)
